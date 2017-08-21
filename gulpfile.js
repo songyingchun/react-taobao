@@ -3,30 +3,15 @@
  */
 var gulp = require("gulp");
 var del = require("del");
-var useref = require('gulp-useref');
-var browserSync = require('browser-sync').create();
 var gulpSequence = require('gulp-sequence');                // 异步打包
-var uglify = require("gulp-uglify");
-var pump = require("pump");
-var imagemin = require("gulp-imagemin"); // 图片压缩
-var pngquant = require("imagemin-pngquant"); // 深度压缩
 var livereload = require("gulp-livereload"); // 网页自动刷新（文件变动后即时刷新页面）
 var webserver = require("gulp-webserver"); // 本地服务器
-var rename = require("gulp-rename"); // 本地服务器
 var sourcemaps = require("gulp-sourcemaps"); // 本地服务器
 var concat = require("gulp-concat"); // 文件合并
-var changed = require("gulp-changed"); // 只操作有过修改的文件
-var autoprefixer = require("autoprefixer"); // 自动添加CSS3浏览器前缀
-var cache = require("gulp-cache"); // 图片缓存
-var notify = require("gulp-notify"); // notify
+
+// html
+var useref = require('gulp-useref');
 var htmlmin = require("gulp-htmlmin"); // html
-var rev = require("gulp-rev"); // rev
-var revappend = require("gulp-rev-append"); // rev
-
-var babel = require("gulp-babel"); // babel
-var browserify = require("gulp-browserify"); // browserify
-
-var sprites = require('postcss-sprites').default;
 
 // css
 var csslint = require('gulp-csslint');
@@ -36,9 +21,28 @@ var sass = require("gulp-sass");
 var cssnano = require("cssnano");
 var px2rem = require('postcss-px2rem');//px转换成rem
 var uncss = require('gulp-uncss');
+var autoprefixer = require("autoprefixer"); // 自动添加CSS3浏览器前缀
+var mincss = require("gulp-minify-css"); // 自动添加CSS3浏览器前缀
 
+// js
+var browserSync = require('browser-sync').create();
+var uglify = require("gulp-uglify");
+var pump = require("pump");
+var rename = require("gulp-rename"); // 本地服务器
+var babel = require("gulp-babel"); // babel
+var eslint = require("gulp-eslint"); // babel
+var browserify = require("gulp-browserify"); // browserify
+var rev = require("gulp-rev"); // rev
+var revappend = require("gulp-rev-append"); // rev
+
+// images
+var imagemin = require("gulp-imagemin"); // 图片压缩
+var pngquant = require("imagemin-pngquant"); // 深度压缩
+var sprites = require('postcss-sprites').default;
+var cache = require("gulp-cache"); // 图片缓存
+
+// PATH
 var PATH = {
-    DIR: __dirname,
     SRC: "./src",
     DIST: "./dist",
     SRC_SASS: ["./src/**/*.sass", "./src/**/*.scss"],
@@ -52,13 +56,25 @@ gulp.task("clean", function() {
     return del([PATH.DIST]);
 });
 
-gulp.task("useref", function () {
-    return gulp.src([PATH.SRC + "/**/*.html"])
-        .pipe(useref())
-        .pipe(gulp.dest(PATH.DIST));
+gulp.task("html", function () {
+    return gulp.src(PATH.SRC_HTML)
+        .pipe(gulp.dest(PATH.DIST))
 });
 
-gulp.task("sass", function () {
+gulp.task("js", function () {
+    return gulp.src(PATH.SRC_JS)
+        .pipe(sourcemaps.init())
+        .pipe(babel())
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(browserify({
+            insertGlobals : true
+        }))
+        .pipe(sourcemaps.write("."))
+        .pipe(gulp.dest(PATH.DIST))
+});
+
+gulp.task("css", function () {
     var plugins = [
         autoprefixer({browsers: ['last 1 version']}),
         cssnano(),
@@ -72,22 +88,6 @@ gulp.task("sass", function () {
         .pipe(sass())
         .pipe(postcss(plugins))
         .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest(PATH.DIST))
-});
-
-gulp.task("js", function () {
-    return gulp.src(PATH.SRC_JS)
-        .pipe(sourcemaps.init())
-        .pipe(babel())
-        .pipe(browserify({
-            insertGlobals : true
-        }))
-        .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest(PATH.DIST))
-});
-
-gulp.task("html", function () {
-    return gulp.src(PATH.SRC_HTML)
         .pipe(gulp.dest(PATH.DIST))
 });
 
@@ -118,7 +118,7 @@ gulp.task("watch",function(){
 });
 
 gulp.task("sequence", gulpSequence(
-    'clean', 'sass', 'js', 'html', 'images', 'watch'
+    'clean', 'css', 'js', 'html', 'images', 'watch'
 ));
 
 gulp.task("webserver", function() {
@@ -133,6 +133,50 @@ gulp.task("webserver", function() {
 gulp.task("development", ["sequence"], function () {
     gulp.start("webserver");
 });
+
+// production
+gulp.task("useref", function () {
+    return gulp.src([PATH.SRC + "/**/*.html"])
+        .pipe(useref())
+        .pipe(gulp.dest(PATH.DIST));
+});
+
+gulp.task("min-html", function (){
+    var options = {
+        removeComments: true,//清除HTML注释
+        collapseWhitespace: true,//压缩HTML
+        collapseBooleanAttributes: true,//省略布尔属性的值 <input checked="true"/> ==> <input />
+        removeEmptyAttributes: true,//删除所有空格作属性值 <input id="" /> ==> <input />
+        removeScriptTypeAttributes: true,//删除<script>的type="text/javascript"
+        removeStyleLinkTypeAttributes: true,//删除<style>和<link>的type="text/css"
+        minifyJS: true,//压缩页面JS
+        minifyCSS: true//压缩页面CSS
+    };
+    gulp.src(PATH.SRC_HTML)
+        .pipe(htmlmin(options))
+        .pipe(gulp.dest(PATH.DIST));
+});
+
+gulp.task("min-css", function (){
+    var plugins = [
+        autoprefixer({browsers: ['last 1 version']}),
+        cssnano(),
+        px2rem({
+            remUnit: 75
+        }),
+        cssnext
+    ];
+    gulp.src(PATH.SRC_SASS.concat(PATH.SRC_CSS))
+        .pipe(sass())
+        .pipe(postcss(plugins))
+        .pipe(mincss({
+            advanced: false,//类型：Boolean 默认：true [是否开启高级优化（合并选择器等）]
+            keepSpecialComments: '*'
+            //保留所有特殊前缀 当你用autoprefixer生成的浏览器前缀，如果不加这个参数，有可能将会删除你的部分前缀
+        }))
+        .pipe(gulp.dest(PATH.DIST));
+});
+
 
 gulp.task("default", [process.env.NODE_ENV]);
 
