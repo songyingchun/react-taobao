@@ -4,9 +4,7 @@
 const gulp = require("gulp");
 const del = require("del");
 const gulpSequence = require("gulp-sequence");                // 异步打包
-const livereload = require("gulp-livereload"); // 网页自动刷新（文件变动后即时刷新页面）
-const webserver = require("gulp-webserver"); // 本地服务器
-const sourcemaps = require("gulp-sourcemaps"); // 本地服务器
+const sourcemaps = require("gulp-sourcemaps"); // sourcemaps
 const concat = require("gulp-concat"); // 文件合并
 const browserSync = require("browser-sync").create();
 
@@ -33,7 +31,6 @@ const babel = require("gulp-babel"); // babel
 const eslint = require("gulp-eslint"); // babel
 const browserify = require("gulp-browserify"); // browserify
 const rev = require("gulp-rev"); // rev
-const revappend = require("gulp-rev-append"); // rev
 const revCollector = require("gulp-rev-collector"); // rev
 
 // images
@@ -209,9 +206,7 @@ gulp.task("min-watch",function(){
 });
 
 gulp.task("production", gulpSequence(
-    "clean",
-    "min-css", "min-js", "min-images", "move-other-images", "min-html", "min-watch",
-    "bs"
+    "clean", "min-css", "min-js", "min-images", "min-html", "min-watch", "bs"
 ));
 
 gulp.task("default", [process.env.NODE_ENV]);
