@@ -32,6 +32,11 @@ const eslint = require("gulp-eslint"); // babel
 const browserify = require("gulp-browserify"); // browserify
 const rev = require("gulp-rev"); // rev
 const revCollector = require("gulp-rev-collector"); // rev
+const jsx = require("gulp-jsx"); // rev
+const react = require("gulp-react"); // rev
+const webpack = require("gulp-webpack"); // rev
+const es2015 = require("babel-preset-es2015"); // rev
+
 
 // images
 const imagemin = require("gulp-imagemin"); // 图片压缩
@@ -43,8 +48,9 @@ const cache = require("gulp-cache"); // 图片缓存
 const PATH = {
     SRC: "./src",
     DIST: "./dist",
-    SRC_CSS: ["./src/**/*.sass", "./src/**/*.scss", "./src/**/*.css"],
+    SRC_CSS: ["./src/**/*.{sass,scss,css}"],
     SRC_JS: ["./src/**/*.js"],
+    SRC_JSX: ["./src/**/*.jsx"],
     SRC_HTML: ["./src/**/*.html"],
     SRC_IMAGES: ["./src/**/*.{png,jpg,gif,svg}"],
     DIST_JS: ["./dist/**/*.js"]
@@ -70,6 +76,22 @@ gulp.task("js", function () {
         }))
         .pipe(sourcemaps.write("."))
         .pipe(gulp.dest(PATH.DIST))
+});
+
+gulp.task("jsx", function () {
+    return gulp.src(PATH.SRC_JSX)
+        .pipe(react())
+        .pipe(babel({presets:[es2015]}))
+        .pipe(gulp.dest(PATH.DIST))
+        .pipe(webpack({//包装代码
+            output:{
+                filename:"all.js",
+            },
+            stats:{
+                colors:true
+            }
+        }))
+        .pipe(gulp.dest(PATH.DIST));
 });
 
 gulp.task("css", function () {
@@ -109,10 +131,10 @@ gulp.task("watch",function(){
     gulp.watch(PATH.SRC_IMAGES, ["images"]);
     // 监听 js
     gulp.watch(PATH.SRC_JS, ["js"]);
+    // 监听 jsx
+    gulp.watch(PATH.SRC_JSX, ["jsx"]);
 
-    livereload.listen();
-
-    gulp.watch(PATH.DIST).on("change", livereload.changed);
+    gulp.watch(PATH.DIST).on("change", browserSync.reload);
 });
 
 gulp.task("development", gulpSequence(
@@ -150,6 +172,22 @@ gulp.task("min-js", function () {
         gulp.dest(PATH.DIST),
     ]);
 });
+
+gulp.task("min-jsx", function () {
+    return pump([
+        gulp.src(PATH.SRC_JSX),
+        react(),
+        babel(),
+        eslint(),
+        browserify({
+            insertGlobals : true
+        }),
+        uglify(),
+        // rev(),
+        gulp.dest(PATH.DIST),
+    ]);
+});
+
 
 gulp.task("min-css", function (){
     const plugins = [
@@ -201,12 +239,14 @@ gulp.task("min-watch",function(){
     gulp.watch(PATH.SRC_IMAGES, ["min-images"]);
     // 监听 js
     gulp.watch(PATH.SRC_JS, ["min-js"]);
+    // 监听 js
+    gulp.watch(PATH.SRC_JSX, ["min-jsx"]);
 
     gulp.watch(PATH.DIST).on("change", browserSync.reload);
 });
 
 gulp.task("production", gulpSequence(
-    "clean", "min-css", "min-js", "min-images", "min-html", "min-watch", "bs"
+    "clean", "min-css", "min-js", "min-jsx", "min-images", "min-html", "min-watch", "bs"
 ));
 
 gulp.task("default", [process.env.NODE_ENV]);
