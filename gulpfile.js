@@ -2,40 +2,37 @@
  * Created by songyingchun on 2017/8/17 0017.
  */
 const gulp = require("gulp");
-const del = require("del");
-const gulpSequence = require("gulp-sequence");                // 异步打包
+const del = require("del"); // 清除文件
+const gulpSequence = require("gulp-sequence"); // 异步打包
 const sourcemaps = require("gulp-sourcemaps"); // sourcemaps
 const concat = require("gulp-concat"); // 文件合并
-const browserSync = require("browser-sync").create();
+const browserSync = require("browser-sync").create(); // 自动打开浏览器
 
 // html
-const useref = require("gulp-useref");
+const useref = require("gulp-useref");   // html里零碎的这些引入合并成一个文件
 const htmlmin = require("gulp-htmlmin"); // html
 
 // css
-const csslint = require("gulp-csslint");
+const csslint = require("gulp-csslint"); // css规范
 const postcss = require("gulp-postcss"); // postcss
 const cssnext = require("postcss-cssnext"); // cssnext
-const sass = require("gulp-sass");
-const cssnano = require("cssnano");
+const sass = require("gulp-sass");       // sass
+const cssnano = require("cssnano");      // 提取公共样式
 const px2rem = require("postcss-px2rem");//px转换成rem
-const uncss = require("gulp-uncss");
+const uncss = require("gulp-uncss");     // 去掉无用的css
 const autoprefixer = require("autoprefixer"); // 自动添加CSS3浏览器前缀
-const mincss = require("gulp-minify-css"); // 自动添加CSS3浏览器前缀
+const mincss = require("gulp-minify-css"); // 压缩css
 
 // js
-const uglify = require("gulp-uglify");
-const pump = require("pump");
-const rename = require("gulp-rename"); // 本地服务器
-const babel = require("gulp-babel"); // babel
-const eslint = require("gulp-eslint"); // babel
+const uglify = require("gulp-uglify"); // 压缩js
+const pump = require("pump"); // 解决压缩js出现的问题
+const rename = require("gulp-rename"); // 重名
+const babel = require("gulp-babel"); // 转换es5
+const eslint = require("gulp-eslint"); // js规范
 const browserify = require("gulp-browserify"); // browserify
 const rev = require("gulp-rev"); // rev
 const revCollector = require("gulp-rev-collector"); // rev
-const jsx = require("gulp-jsx"); // rev
-const react = require("gulp-react"); // rev
-const webpack = require("gulp-webpack"); // rev
-const es2015 = require("babel-preset-es2015"); // rev
+const react = require("gulp-react"); // 将jsx转成js
 
 // images
 const imagemin = require("gulp-imagemin"); // 图片压缩
@@ -48,7 +45,7 @@ const PATH = {
     SRC: "./src",
     DIST: "./dist",
     SRC_CSS: ["./src/**/*.{sass,scss,css}"],
-    SRC_JS: ["./src/**/*.js"],
+    SRC_JS: ["./src/**/*.{js,jsx}"],
     SRC_JSX: ["./src/**/*.jsx"],
     SRC_HTML: ["./src/**/*.html"],
     SRC_IMAGES: ["./src/**/*.{png,jpg,gif,svg}"],
@@ -66,19 +63,6 @@ gulp.task("html", function () {
 
 gulp.task("js", function () {
     return gulp.src(PATH.SRC_JS)
-        .pipe(sourcemaps.init())
-        .pipe(babel())
-        .pipe(eslint())
-        .pipe(eslint.format())
-        .pipe(browserify({
-            insertGlobals : true
-        }))
-        .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest(PATH.DIST))
-});
-
-gulp.task("jsx", function () {
-    return gulp.src(PATH.SRC_JSX)
         .pipe(sourcemaps.init())
         .pipe(babel())
         .pipe(eslint())
@@ -128,14 +112,12 @@ gulp.task("watch",function(){
     gulp.watch(PATH.SRC_IMAGES, ["images"]);
     // 监听 js
     gulp.watch(PATH.SRC_JS, ["js"]);
-    // 监听 jsx
-    gulp.watch(PATH.SRC_JSX, ["jsx"]);
 
     gulp.watch(PATH.DIST).on("change", browserSync.reload);
 });
 
 gulp.task("development", gulpSequence(
-    "clean", "css", "js", "jsx", "html", "images", "watch", "bs"
+    "clean", "css", "js", "html", "images", "watch", "bs"
 ));
 
 gulp.task("min-html", function (){
@@ -165,7 +147,6 @@ gulp.task("min-js", function () {
             insertGlobals : true
         }),
         uglify(),
-        // rev(),
         gulp.dest(PATH.DIST),
     ]);
 });
@@ -180,11 +161,9 @@ gulp.task("min-jsx", function () {
             insertGlobals : true
         }),
         uglify(),
-        // rev(),
         gulp.dest(PATH.DIST),
     ]);
 });
-
 
 gulp.task("min-css", function (){
     const plugins = [
@@ -236,14 +215,12 @@ gulp.task("min-watch",function(){
     gulp.watch(PATH.SRC_IMAGES, ["min-images"]);
     // 监听 js
     gulp.watch(PATH.SRC_JS, ["min-js"]);
-    // 监听 js
-    gulp.watch(PATH.SRC_JSX, ["min-jsx"]);
 
     gulp.watch(PATH.DIST).on("change", browserSync.reload);
 });
 
 gulp.task("production", gulpSequence(
-    "clean", "min-css", "min-js", "min-jsx", "min-images", "min-html", "min-watch", "bs"
+    "clean", "min-css", "min-js", "min-images", "min-html", "min-watch", "bs"
 ));
 
 gulp.task("default", [process.env.NODE_ENV]);
