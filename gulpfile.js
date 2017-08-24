@@ -37,7 +37,6 @@ const react = require("gulp-react"); // rev
 const webpack = require("gulp-webpack"); // rev
 const es2015 = require("babel-preset-es2015"); // rev
 
-
 // images
 const imagemin = require("gulp-imagemin"); // 图片压缩
 const pngquant = require("imagemin-pngquant"); // 深度压缩
@@ -81,8 +80,14 @@ gulp.task("js", function () {
 gulp.task("jsx", function () {
     return gulp.src(PATH.SRC_JSX)
         .pipe(sourcemaps.init())
-        .pipe(react())
         .pipe(babel())
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(react())
+        .pipe(browserify({
+            insertGlobals : true
+        }))
+        .pipe(sourcemaps.write("."))
         .pipe(gulp.dest(PATH.DIST))
 });
 
@@ -130,7 +135,7 @@ gulp.task("watch",function(){
 });
 
 gulp.task("development", gulpSequence(
-    "clean", "css", "js", "html", "images", "watch", "bs"
+    "clean", "css", "js", "jsx", "html", "images", "watch", "bs"
 ));
 
 gulp.task("min-html", function (){
@@ -168,9 +173,9 @@ gulp.task("min-js", function () {
 gulp.task("min-jsx", function () {
     return pump([
         gulp.src(PATH.SRC_JSX),
-        react(),
         babel(),
         eslint(),
+        react(),
         browserify({
             insertGlobals : true
         }),
