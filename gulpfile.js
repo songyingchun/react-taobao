@@ -80,18 +80,10 @@ gulp.task("js", function () {
 
 gulp.task("jsx", function () {
     return gulp.src(PATH.SRC_JSX)
+        .pipe(sourcemaps.init())
         .pipe(react())
-        .pipe(babel({presets:[es2015]}))
+        .pipe(babel())
         .pipe(gulp.dest(PATH.DIST))
-        .pipe(webpack({//包装代码
-            output:{
-                filename:"all.js",
-            },
-            stats:{
-                colors:true
-            }
-        }))
-        .pipe(gulp.dest(PATH.DIST));
 });
 
 gulp.task("css", function () {

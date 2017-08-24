@@ -5,12 +5,15 @@ import React, {Component, PropTypes} from "react";
 import ReactDOM from "react-dom";
 import Router from "react-router";
 
-class Roots extends Component {
-    render() {
+var App = React.creatClass({
+    render: function (){
         return (
-            <div>{this.props.children}</div>
-        );
+            <div>
+                <h1>App</h1>
+            </div>
+        )
     }
-}
+});
+React.render(<App/>, document.body);
 
-export default Roots;
+export default {};
