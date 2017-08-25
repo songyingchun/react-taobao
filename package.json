@@ -1,0 +1,54 @@
+{
+  "name": "react-taobao",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.production.js --color --progress",
+    "save": "cnpm install --save webpack react react-router redux",
+    "save-dev": "cnpm install --save-dev html-webpack-plugin clean-webpack-plugin cross-env webpack-dev-server sass-loader node-sass postcss-loader css-loader style-loader json-loader cssnano postcss-px2rem postcss-import postcss-cssnext autoprefixer postcss-mixins postcss-for postcss-nested postcss-simple-vars"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/songyingchun/react-taobao.git"
+  },
+  "keywords": [
+    "react",
+    "webpack"
+  ],
+  "author": "songyingchun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/songyingchun/react-taobao/issues"
+  },
+  "homepage": "https://github.com/songyingchun/react-taobao#readme",
+  "devDependencies": {
+    "autoprefixer": "^7.1.2",
+    "clean-webpack-plugin": "^0.1.16",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.5",
+    "cssnano": "^3.10.0",
+    "html-webpack-plugin": "^2.30.1",
+    "json-loader": "^0.5.7",
+    "node-sass": "^4.5.3",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-for": "^2.1.1",
+    "postcss-import": "^10.0.0",
+    "postcss-loader": "^2.0.6",
+    "postcss-mixins": "^6.1.0",
+    "postcss-nested": "^2.1.2",
+    "postcss-px2rem": "^0.3.0",
+    "postcss-simple-vars": "^4.1.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "webpack-dev-server": "^2.7.1"
+  },
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-router": "^4.2.0",
+    "redux": "^3.7.2",
+    "webpack": "^3.5.5"
+  }
+}
