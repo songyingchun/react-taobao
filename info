@@ -1,8 +1,3 @@
-gulp: http://www.gulpjs.com.cn/docs/api/
-gulp配置: http://blog.csdn.net/yezhouyong/article/details/52507346
-          https://github.com/zhonglimh/Gulp/tree/master/Example2
-          http://www.cnblogs.com/gyx19930120/p/4773123.html
-
 项目地址：http://react-china.org/t/react/14003
           https://ziaochina.github.io/mk-docs/
 
@@ -10,5 +5,6 @@ react: http://www.react-cn.com/docs/getting-started.html
 react: https://doc.react-china.org/react/docs/jsx-in-depth.html
 react-router: https://react-guide.github.io/react-router-cn/docs/guides/basics/RouteConfiguration.html
         http://www.react-cn.com/docs/tutorial.html
+        http://www.mamicode.com/info-detail-1830752.html
 jsx: https://doc.react-china.org/react/docs/jsx-in-depth.html
 react-native: http://reactnative.cn/

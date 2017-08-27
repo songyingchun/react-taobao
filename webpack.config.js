@@ -25,6 +25,34 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.js$/,
+                exclude: /(node_modules|plugins|common)/,
+                include: /src/,
+                enforce: "pre",
+                use: [{
+                    loader: "source-map-loader"
+                },{
+                    loader: "babel-loader"
+                },{
+                    loader: "eslint-loader"
+                }]
+            },
+            {
+                test: /\.jsx$/,
+                exclude: /(node_modules|plugins|common)/,
+                include: /src/,
+                enforce: "pre",
+                use: [{
+                    loader: "source-map-loader"
+                },{
+                    loader: "jsx-loader"
+                },{
+                    loader: "babel-loader"
+                },{
+                    loader: "eslint-loader"
+                }]
+            },
+            {
                 test: /\.(sass|scss|css)$/,
                 exclude: /node_modules/,
                 include: /src/,
