@@ -11,15 +11,12 @@ import Router,{
 
 const env = process.env.NODE_ENV;
 
+import Home from "@/views/home/home.jsx";
+
+
 if(env === "development") {
 
 }
-
-const Home = () => (
-    <div>
-        <h2>Home123132</h2>
-    </div>
-);
 
 const About = () => (
     <div>
@@ -36,15 +33,14 @@ const Topics = ({ match }) => (
 const router = () => (
     <HashRouter>
         <div>
+            <Route exact path="/" component={Home}/>
+            <Route path="/about" component={About}/>
+            <Route path="/topics" component={Topics}/>
             <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/about">About</Link></li>
                 <li><Link to="/topics">Topics</Link></li>
             </ul>
-
-            <Route exact path="/" component={Home}/>
-            <Route path="/about" component={About}/>
-            <Route path="/topics" component={Topics}/>
         </div>
     </HashRouter>
 );

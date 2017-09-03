@@ -12,7 +12,7 @@ module.exports = {
         "autoprefixer": {},
         "cssnano": {},
         "postcss-px2rem":{
-            remUnit: 75
+            remUnit: 41.4
         }
     }
 };

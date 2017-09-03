@@ -8,11 +8,13 @@ const cleanWebpackPlugin = require("clean-webpack-plugin");
 const env = process.env.NODE_ENV;
 
 const PATH = {
-    entry: "./src/main.js",
+    entry: "./src/app.js",
 };
 
 module.exports = {
-    entry: PATH.entry,
+    entry: {
+        app: "./src/app.js"
+    },
     output: {
         path: path.resolve(__dirname, "dev"),
         filename: "[name].[hash:8].js",
@@ -59,11 +61,35 @@ module.exports = {
                 use: [{
                     loader: "style-loader"
                 }, {
-                    loader: "css-loader"
+                    loader: "css-loader",
                 }, {
                     loader: "postcss-loader"
                 }, {
-                    loader: "sass-loader"
+                    loader: "sass-loader",
+                    options: {
+                        data: "$env: " + process.env.NODE_ENV + ";"
+                    }
+                }]
+            },
+            {
+                test: /\.(jpg|jpeg|png|svg|gif)$/,
+                exclude: /node_modules/,
+                include: /src/,
+                use: [{
+                    loader: "url-loader",
+                    options: {
+                        limit: 8192
+                    }
+                }]
+            },{
+                test: /\.(woff|svg|eot|ttf)\??.*$/,
+                exclude: /node_modules/,
+                include: /iconfont/,
+                use: [{
+                    loader: "url-loader",
+                    options: {
+                        name: "[name].[hash:8].[ext]"
+                    }
                 }]
             }
         ]
