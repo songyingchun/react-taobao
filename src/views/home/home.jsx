@@ -102,6 +102,21 @@ const Home = () => (
                         <div className="pic">
                             <img src="" alt=""/>
                         </div>
+                        <div className="caption">
+                            <div className="text">
+                                雪纺印花百褶裙半身裙,简约的线条和版型上身很好看，整体更有看点。
+                            </div>
+                            <div className="price">
+                                <i className="icon">￥</i>
+                                <span className="">115</span>
+                            </div>
+                            <div className="info">
+                                <span>月销</span>
+                                <span>62</span>
+                                <span>笔</span>
+                                <span className="right">免邮费</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

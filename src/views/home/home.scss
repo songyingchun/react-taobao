@@ -40,6 +40,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            padding: 12px 0;
             .icon{
                 font-size: 18px;
             }
@@ -171,6 +172,28 @@
                 .pic {
                     img{
                         border-radius: 6px;
+                    }
+                }
+                .caption {
+                    .text{
+                        height: 45px;
+                        overflow: hidden;
+                        color: rgb(33, 33, 33);
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                    }
+                    .price{
+                        span{
+                            color: #b94a48;
+                        }
+                    }
+                    .info{
+                        span{
+                            color: #999999;
+                        }
+                        .right{
+                            float: right;
+                        }
                     }
                 }
             }
