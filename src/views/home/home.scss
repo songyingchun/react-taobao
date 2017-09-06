@@ -160,7 +160,7 @@
             margin-bottom: -1px;
             background-color: #ffffff;
             border: 1px solid #eeeeee;
-            font-size: 20px;
+            font-size: 16px;
             color: #666;
         }
         .like-list{
@@ -169,9 +169,12 @@
                 padding: 10px;
                 float: left;
                 width: 50%;
+                background: #fff;
+                box-sizing: border-box;
                 .pic {
                     img{
                         border-radius: 6px;
+                        width: 100%;
                     }
                 }
                 .caption {
@@ -181,15 +184,26 @@
                         color: rgb(33, 33, 33);
                         margin-top: 10px;
                         margin-bottom: 10px;
+                        line-height: 1.1;
+                        font-weight: 500;
+                        font-size: 14px;
                     }
                     .price{
-                        span{
+                        .icon{
                             color: #b94a48;
+                            font-size: 12px;
+                            line-height: 1.5;
+                        }
+                        .text{
+                            color: #b94a48;
+                            font-size: 12px;
                         }
                     }
                     .info{
+                        font-size: 12px;
                         span{
                             color: #999999;
+                            line-height:1.5;
                         }
                         .right{
                             float: right;

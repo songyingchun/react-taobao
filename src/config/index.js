@@ -10,42 +10,47 @@ module.exports = {
     webpackConfigProduction: {
 
     },
-
     js: {
-        path: "@/js",
-        utils: "@/js/utils",
+        path: "src/js",
+        utils: "src/js/utils",
     },
     plugins: {
-        path: "@/plugins",
-        swiper: "@/plugins/swiper"
+        path: "src/plugins",
+        swiper: "src/plugins/swiper"
     },
     router: {
-        path: "@/router",
-        router: "@/router/router",
+        path: "src/router",
+        router: "src/router/router",
     },
     components: {
-        path: "@/components",
-        banner: "@/components/banner/banner.jsx",
+        path: "src/components",
+        banner: "src/components/banner/banner.jsx",
     },
     config: {
-        path: "@/config",
-        flexible: "@/config/flexible",
-        index: "@/config/home"
+        path: "src/config",
+        flexible: "src/config/flexible",
+        index: "src/config/home"
     },
     images: {
-        path: "@/images"
+        path: "src/images"
     },
     store: {
-        path: "@/store"
+        path: "src/store"
     },
     style: {
-        path: "@/style",
-        iconfont: "@/style/iconfont",
-        common: "@/style/common",
-        base: "@/style/base"
+        path: "src/style",
+        iconfont: "src/style/iconfont",
+        common: "src/style/common",
+        base: "src/style/base"
     },
     views: {
-        path: "@/views",
-        index: "@/views/home"
+        path: "src/views",
+        index: "src/views/home"
+    },
+    server: {
+        path: "src/server",
+        data: {
+            goodsData: "src/server/data/goodsData.json"
+        }
     }
 };
