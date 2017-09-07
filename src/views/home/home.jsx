@@ -12,25 +12,57 @@ class Home extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            navIndex: 0
+            navIndex: 0,
+            load: false,
+            data: {}
         };
     }
     componentDidMount() {
-
-    }
-    componentWillUnmount() {
         this.fetch();
     }
     fetch () {
         fetch(Config.server.data.goodsData).then((response)=>{
             if(response.status === 200) {
                 response.json().then((data)=>{
-                    this.state.data = response.data;
+                    this.setState({
+                        data: data,
+                        load: true
+                    });
                 });
             }
         });
     }
     render () {
+        const data = this.state.data;
+        const list = [];
+        if(data.length) {
+            for(let i = 0; i < data.length; i++) {
+                let item = data[i];
+                console.log(item);
+                list.push(
+                    <div className="item" key={i}>
+                        <div className="pic">
+                            <img src={require("./icon/pic1.png")} alt=""/>
+                        </div>
+                        <div className="caption">
+                            <div className="text">
+                                {item.fTitle}
+                            </div>
+                            <div className="price">
+                                <i className="icon">￥</i>
+                                <span className="text">{item.fPrice}</span>
+                            </div>
+                            <div className="info">
+                                <span>月销</span>
+                                <span>{item.fRecord}</span>
+                                <span>笔</span>
+                                <span className="right">{item.fPostage}</span>
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+        }
         return (
             <div>
                 <div className="panel-top">
@@ -124,26 +156,7 @@ class Home extends React.Component {
                             猜您喜欢
                         </div>
                         <div className="like-list">
-                            <div className="item">
-                                <div className="pic">
-                                    <img src={require("./icon/pic1.png")} alt=""/>
-                                </div>
-                                <div className="caption">
-                                    <div className="text">
-                                        雪纺印花百褶裙半身裙,简约的线条和版型上身很好看，整体更有看点。
-                                    </div>
-                                    <div className="price">
-                                        <i className="icon">￥</i>
-                                        <span className="text">115</span>
-                                    </div>
-                                    <div className="info">
-                                        <span>月销</span>
-                                        <span>62</span>
-                                        <span>笔</span>
-                                        <span className="right">免邮费</span>
-                                    </div>
-                                </div>
-                            </div>
+                            {list}
                         </div>
                         <Pullup/>
                         <Nav navIndex={this.state.navIndex}/>
