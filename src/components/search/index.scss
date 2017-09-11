@@ -1,0 +1,84 @@
+.panel-top{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    .title-bar{
+        background-color: rgb(255, 68, 0);
+        color: #ffffff;
+        overflow: hidden;
+        display: flex;
+        box-sizing: content-box;
+        height: 48px;
+        .title-left{
+            padding-left: 5px;
+            display: flex;
+            font-size: 18px;
+            flex-direction: row;
+            align-items: center;
+            flex: 1;
+            height: 100%;
+            .scan{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .icon {
+                    padding-bottom: 0.125em;
+                    text-align: center;
+                    vertical-align: middle;
+                }
+                .text{
+                    font-size: 12px;
+                }
+            }
+        }
+        .title-center {
+            flex: 2;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding: 12px 0;
+            .icon{
+                font-size: 18px;
+            }
+            .text{
+                font-size: 16px;
+            }
+            .line{
+                height: 3px;
+                border: 1px solid rgb(255, 255, 255);
+                border-top: none;
+            }
+        }
+        .title-right {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-right: 5px;
+            .empty{
+                flex: 1;
+            }
+            .news {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .icon{
+                    font-size: 20px;
+                    padding-bottom: 0.125em;
+                    text-align: center;
+                    vertical-align: middle;
+                }
+                .text{
+                    font-size: 12px;
+                    display: block;
+                }
+            }
+        }
+    }
+}

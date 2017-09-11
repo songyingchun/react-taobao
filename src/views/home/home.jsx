@@ -1,14 +1,16 @@
 /**
  * Created by songyingchun on 2017/9/3.
  */
-import React from "react";
+import React, {Component} from "react";
 import "./home.scss";
 import Banner from "@/components/banner/banner.jsx";
 import Pullup from "@/components/pullup/pullup.jsx";
 import Nav from "@/components/nav/nav.jsx";
-import Config from "@/config/index.js";
+import Search from "@/components/search/index.jsx";
+import Config from "@/config/";
+import ReactPullToRefresh from "react-pull-to-refresh";
 
-class Home extends React.Component {
+class Home extends Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -20,19 +22,25 @@ class Home extends React.Component {
     componentDidMount() {
         this.fetch();
     }
-    fetch () {
-        fetch(Config.server.data.goodsData).then((response)=>{
-            if(response.status === 200) {
-                response.json().then((data)=>{
-                    this.setState({
-                        data: data,
-                        load: true
-                    });
-                });
-            }
-        });
+    handleRefresh(resolve, reject) {
+        console.log(11);
+        if (this.load) {
+            resolve();
+        } else {
+            reject();
+        }
     }
-    render () {
+    fetch () {
+        fetch(Config.server.data.goodsData)
+            .then(res=>res.json())
+            .then(data=>{
+                this.setState({
+                    data: data,
+                    load: true
+                });
+            });
+    }
+    list () {
         const data = this.state.data;
         const list = [];
         if(data.length) {
@@ -42,7 +50,7 @@ class Home extends React.Component {
                 list.push(
                     <div className="item" key={i}>
                         <div className="pic">
-                            <img src={require("./icon/pic1.png")} alt=""/>
+                            <img src={item.fImg} alt=""/>
                         </div>
                         <div className="caption">
                             <div className="text">
@@ -63,30 +71,13 @@ class Home extends React.Component {
                 );
             }
         }
+        return list;
+    }
+    render () {
+        const List = this.list();
         return (
             <div>
-                <div className="panel-top">
-                    <div className="title-bar">
-                        <div className="title-left">
-                            <div className="scan">
-                                <i className="icon glyphicon glyphicon-qrcode"></i>
-                                <span className="text">扫一扫</span>
-                            </div>
-                        </div>
-                        <div className="title-center">
-                            <i className="icon icon-ios7-search-strong"></i>
-                            <span className="text">芊芊玉手如何保养</span>
-                            <div className="line"></div>
-                        </div>
-                        <div className="title-right">
-                            <div className="empty"></div>
-                            <div className="news">
-                                <i className="icon icon-ios7-chatbubble"></i>
-                                <span className="text">消息</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <Search />
                 <div className="panel-content">
                     <Banner/>
                     <div className="list">
@@ -156,7 +147,11 @@ class Home extends React.Component {
                             猜您喜欢
                         </div>
                         <div className="like-list">
-                            {list}
+                            <ReactPullToRefresh
+                                onRefresh={this.handleRefresh}
+                            >
+                                <div>{List}</div>
+                            </ReactPullToRefresh>
                         </div>
                         <Pullup/>
                         <Nav navIndex={this.state.navIndex}/>

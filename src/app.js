@@ -4,10 +4,10 @@
 import "@/style/common/common";
 import "@/config/flexible";
 // import "@/config/rem";
-import ReactDOM from "react-dom";
+import ReactDOM, {render} from "react-dom";
 import router from "@/router/router";
 
 
-ReactDOM.render(
+render(
     router, document.getElementById("app")
 );

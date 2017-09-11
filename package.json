@@ -8,7 +8,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.production.js --color --progress",
     "save": "cnpm install --save webpack react react-router redux react-dom react-router-dom",
-    "save-dev": "cnpm install --save-dev html-webpack-plugin clean-webpack-plugin cross-env webpack-dev-server sass-loader node-sass postcss-loader css-loader style-loader json-loader cssnano postcss-px2rem postcss-import postcss-cssnext autoprefixer postcss-mixins postcss-for postcss-nested postcss-simple-vars  babel-plugin-transform-react-jsx babel-preset-react babel-core babel-loader babel-preset-env babel-preset-stage-3 source-map-loader eslint-loader eslint jsx-loader file-loader url-loader"
+    "save-dev": "cnpm install --save-dev html-webpack-plugin clean-webpack-plugin cross-env webpack-dev-server sass-loader node-sass postcss-loader css-loader style-loader json-loader cssnano postcss-px2rem postcss-import postcss-cssnext autoprefixer postcss-mixins postcss-for postcss-nested postcss-simple-vars  babel-plugin-transform-react-jsx babel-preset-react babel-core babel-loader babel-preset-env babel-preset-stage-3 source-map-loader eslint-loader eslint jsx-loader file-loader url-loader react-pull-to-refresh"
   },
   "repository": {
     "type": "git",
@@ -51,6 +51,7 @@
     "postcss-nested": "^2.1.2",
     "postcss-px2rem": "^0.3.0",
     "postcss-simple-vars": "^4.1.0",
+    "react-pull-to-refresh": "^1.1.1",
     "sass-loader": "^6.0.6",
     "source-map-loader": "^0.2.1",
     "style-loader": "^0.18.2",
