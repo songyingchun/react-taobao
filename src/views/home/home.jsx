@@ -6,6 +6,7 @@ import "./home.scss";
 import Banner from "@/components/banner/banner.jsx";
 import Pullup from "@/components/pullup/pullup.jsx";
 import Search from "@/components/search/index.jsx";
+import Nav from "@/components/nav/nav.jsx";
 import Config from "@/config/";
 import ReactPullToRefresh from "react-pull-to-refresh";
 
@@ -80,38 +81,13 @@ const Free = ()=> (
     </div>
 );
 
-class Home extends Component {
+class Like extends Component {
     constructor (props) {
         super(props);
-        this.state = {
-            navIndex: 0,
-            load: false,
-            data: {}
-        };
     }
-    componentDidMount() {
-        this.fetch();
-    }
-    handleRefresh(resolve, reject) {
-        console.log(11);
-        if (this.load) {
-            resolve();
-        } else {
-            reject();
-        }
-    }
-    fetch () {
-        fetch(Config.server.data.goodsData)
-            .then(res=>res.json())
-            .then(data=>{
-                this.setState({
-                    data: data,
-                    load: true
-                });
-            });
-    }
+
     list () {
-        const data = this.state.data;
+        const data = this.props.data;
         const list = [];
         if(data.length) {
             for(let i = 0; i < data.length; i++) {
@@ -143,8 +119,58 @@ class Home extends Component {
         }
         return list;
     }
+
+    handleRefresh(resolve, reject) {
+        console.log(11);
+        if (this.load) {
+            resolve();
+        } else {
+            reject();
+        }
+    }
+
     render () {
         const List = this.list();
+        return (
+            <div className="like">
+                <div className="title">猜您喜欢</div>
+                <div className="like-list">
+                    <ReactPullToRefresh
+                        onRefresh={this.handleRefresh}
+                    >
+                        <div>{List}</div>
+                    </ReactPullToRefresh>
+                </div>
+                <Pullup/>
+            </div>
+        );
+    }
+}
+
+class Home extends Component {
+    constructor (props) {
+        super(props);
+        this.state = {
+            load: false,
+            data: {}
+        };
+    }
+    componentDidMount() {
+        this.fetch();
+    }
+
+    fetch () {
+        fetch(Config.server.data.goodsData)
+            .then(res=>res.json())
+            .then(data=>{
+                this.setState({
+                    data: data,
+                    load: true
+                });
+            });
+    }
+
+    render () {
         return (
             <div>
                 <Search />
@@ -153,22 +179,9 @@ class Home extends Component {
                     <NavList />
                     <Purchase />
                     <Free />
-                    <div className="like">
-                        <div className="title">
-                            猜您喜欢
-                        </div>
-                        <div className="like-list">
-                            <ReactPullToRefresh
-                                onRefresh={this.handleRefresh}
-                            >
-                                <div>{List}</div>
-                                <h3>Pull down to refresh</h3>
-                                <div>etc.</div>
-                            </ReactPullToRefresh>
-                        </div>
-                        <Pullup/>
-                    </div>
+                    <Like {...this.state}/>
                 </div>
+                <Nav pathname={this.props.location.pathname} />
             </div>
         );
     }

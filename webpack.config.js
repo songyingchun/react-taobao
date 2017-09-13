@@ -8,12 +8,12 @@ const cleanWebpackPlugin = require("clean-webpack-plugin");
 const env = process.env.NODE_ENV;
 
 const PATH = {
-    entry: "./src/app.js",
+    entry: "./src/app.jsx",
 };
 
 module.exports = {
     entry: {
-        app: "./src/app.js"
+        app: "./src/app.jsx"
     },
     output: {
         path: path.resolve(__dirname, "dev"),
