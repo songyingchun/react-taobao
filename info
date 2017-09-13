@@ -8,6 +8,8 @@ react: https://doc.react-china.org/react/docs/jsx-in-depth.html
 react-router: https://react-guide.github.io/react-router-cn/docs/guides/basics/RouteConfiguration.html
         http://www.react-cn.com/docs/tutorial.html
         http://www.mamicode.com/info-detail-1830752.html
+
+        web-pull-to-refresh: https://github.com/apeatling/web-pull-to-refresh
 jsx: https://doc.react-china.org/react/docs/jsx-in-depth.html
 react-native: http://reactnative.cn/
 

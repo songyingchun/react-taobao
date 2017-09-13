@@ -40,6 +40,7 @@ class Nav extends React.Component {
             for(let i = 0; i < this.state.navInfoList.length; i++) {
                 const item = this.state.navInfoList[i];
                 res.push(
+
                     <div className={"nav-item" + (this.props.navIndex == i ? " active": "")} key={i}>
                         <i className={"icon " + item.icon}></i>
                         <span className="text">{item.text}</span>
