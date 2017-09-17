@@ -1,0 +1,123 @@
+.discover-title {
+    height: 48px;
+    background: rgb(255, 68, 0);
+    display: flex;
+    color: #ffffff;
+    overflow: hidden;
+    box-sizing: content-box;
+    .empty {
+        flex: 1;
+    }
+    .search {
+        flex: 2;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 12px 0;
+        position: relative;
+        .icon {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            position: absolute;
+            right: 0;
+            top: 12px;
+            font-size: 20px;
+        }
+        .text{
+            color: #fff;
+            background: transparent;
+            height: 30px;
+            padding: 5px 47.5px 5px 10px;
+            font-size: 12px;
+            line-height: 1.5;
+            border-radius: 3px;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            border-bottom: 1px solid #eeeeee;
+            &::placeholder {
+                color: #fff;
+            }
+        }
+    }
+}
+
+.option{
+    .option-wrapper {
+        .option-list {
+            display: flex;
+            border-bottom: 1px solid rgb(231, 231, 231);
+            background: #eee;
+            .option-item {
+                padding: 8px 12px;
+                box-sizing: border-box;
+                width: 115px;
+                border-right: 1px solid rgb(231, 231, 231);
+                text-align: center;
+                &.active {
+                    color: rgb(255, 68, 0);
+                }
+                .text{
+                    margin-left: 5px;
+                }
+                &.type-option {
+                    flex: 1;
+                }
+            }
+        }
+    }
+    .panel-wrapper {
+        .panel-list{
+            .panel-item{
+                display: none;
+                background-color: #fff;
+                &.active{
+                    display: block;
+                }
+                .rank-panel-list {
+                    padding-bottom: 10px;
+                    .rank-panel-item {
+                        padding: 10px;
+                        border-bottom: 1px solid #eeeeee;
+                        &.active{
+                            color: rgb(255, 68, 0);
+                            .icon {
+                                display: inline-block;
+                            }
+                        }
+                        .text{
+                            font-size: 14px;
+                        }
+                        .icon{
+                            padding: 1px 5px;
+                            font-size: 12px;
+                            line-height: 1.5;
+                            border-radius: 3px;
+                            float: right;
+                            display: none;
+                        }
+                    }
+                }
+                .filter-panel {
+                    .label{
+                        font-size: 14px;
+                    }
+                    .price-area{
+                        padding: 10px;
+                        input{
+                            background-color: rgb(238, 238, 238);
+                            height: 30px;
+                            padding: 5px 10px;
+                            font-size: 12px;
+                            line-height: 1.5;
+                            border-radius: 3px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

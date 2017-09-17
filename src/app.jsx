@@ -3,6 +3,7 @@
  */
 import "@/style/common/common";
 import "@/config/flexible";
+import "babel-polyfill";
 
 import React from "react";
 import ReactDOM, {render} from "react-dom";

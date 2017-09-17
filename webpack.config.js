@@ -59,9 +59,14 @@ module.exports = {
                 exclude: /node_modules/,
                 include: /src/,
                 use: [{
-                    loader: "style-loader"
+                    loader: "style-loader",
+
                 }, {
                     loader: "css-loader",
+                    options: {
+                        sourceMap: true,
+                        importLoaders: 1
+                    }
                 }, {
                     loader: "postcss-loader"
                 }, {
@@ -102,7 +107,7 @@ module.exports = {
             "@": path.resolve(__dirname, "src")
         }
     },
-    devtool: "cheap-source-map",
+    devtool: "cheap-module-inline-source-map",
     plugins: [
         new htmlWebpackPlugin({
             favicon: "favicon.ico",
@@ -111,6 +116,10 @@ module.exports = {
             inject: "body"
         }),
         new cleanWebpackPlugin([path.resolve(__dirname, "dev")]),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.ProvidePlugin({
+            env: env
+        })
     ]
 };
+

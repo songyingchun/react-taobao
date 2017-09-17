@@ -2,6 +2,8 @@
  * Created by songyingchun on 2017/8/25 0025.
  */
 
+import serverConfig from "../server/";
+
 module.exports = {
     webpackConfig: {
         entry: "./src/app.js",
@@ -49,8 +51,6 @@ module.exports = {
     },
     server: {
         path: "src/server",
-        data: {
-            goodsData: "src/server/data/goodsData.json"
-        }
+        url: serverConfig
     }
 };

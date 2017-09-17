@@ -1,5 +1,5 @@
 .weitao {
-    .title{
+    .weitao-title{
         height: 49px;
         line-height: 49px;
         font-size: 18px;
@@ -7,26 +7,77 @@
         text-align: center;
         color: #fff;
     }
-    .menu {
+    .content {
         position: absolute;
         top: 49px;
         bottom: 0px;
-        width: 86px;
-        .menu-list .menu-item{
-            background-color: rgb(245, 245, 245);
-            border-radius: 0;
-            border-color: rgb(225, 225, 225);
-            padding: 10px 0;
-            border-bottom: 1px solid rgb(225, 225, 225);
-            &.active{
-                color: rgb(207, 2, 2);
-                background-color: rgb(255, 255, 255);
+        width: 100%;
+        display: flex;
+        .menu {
+            width: 86px;
+            overflow: hidden;
+            position: relative;
+            .menu-list {
+                padding-bottom: 55px;
+                .menu-item {
+                    background-color: rgb(245, 245, 245);
+                    border-radius: 0;
+                    border-color: rgb(225, 225, 225);
+                    padding: 10px 0;
+                    border-bottom: 1px solid rgb(225, 225, 225);
+                    &.active{
+                        color: rgb(207, 2, 2);
+                        background-color: rgb(255, 255, 255);
+                    }
+                }
+                .menu-item span{
+                    display: block;
+                    margin: 10px 0;
+                    text-align: center;
+                }
             }
         }
-        .menu-list .menu-item span{
-            display: block;
-            margin: 10px 0;
-            text-align: center;
+        .panel{
+            margin-left: 10px;
+            flex: 1;
+            overflow: hidden;
+            .panel-list {
+                padding-bottom: 55px;
+                .panel-item{
+                    display: none;
+                    &.active{
+                        display: block;
+                    }
+                    .panel-title{
+                        color: #999;
+                        padding: 10px 0;
+                    }
+                    .pic-text-list{
+                        overflow: hidden;
+                        .pic-text-item{
+                            width: 33.3%;
+                            float: left;
+                            padding-right: 10px;
+                            box-sizing: border-box;
+                            margin-bottom: 10px;
+                            min-height: 120px;
+                            img{
+                                display: block;
+                                width: 100%;
+                                height: auto;
+                            }
+                            .text{
+                                display: block;
+                                text-align: center;
+                                font-size: 13px;
+                                padding: 2.5px 0;
+                                line-height: 20px;
+                                background: #fff;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -1,0 +1,333 @@
+{
+  "rows": [
+    {
+      "fID": "r001",
+      "fClassName": "热门推荐",
+      "fPanel": [
+        {
+          "fID": "s001",
+          "fRootID": "r001",
+          "fClassName": "为您推荐",
+          "content": [
+            {
+              "fID": "t001",
+              "fSecondID": "s001",
+              "fClassName": "纯色T恤",
+              "fClassImg": "src/views/weitao/icon/pic1.png"
+            },
+            {
+              "fID": "t002",
+              "fSecondID": "s001",
+              "fClassName": "潮流",
+              "fClassImg": "src/views/weitao/icon/pic2.png"
+            },
+            {
+              "fID": "t003",
+              "fSecondID": "s001",
+              "fClassName": "跑步鞋",
+              "fClassImg": "src/views/weitao/icon/pic3.png"
+            },
+            {
+              "fID": "t004",
+              "fSecondID": "s001",
+              "fClassName": "五分裤",
+              "fClassImg": "src/views/weitao/icon/pic4.png"
+            },
+            {
+              "fID": "t005",
+              "fSecondID": "s001",
+              "fClassName": "娃娃鞋",
+              "fClassImg": "src/views/weitao/icon/pic5.png"
+            },
+            {
+              "fID": "t006",
+              "fSecondID": "s001",
+              "fClassName": "搅拌料理机",
+              "fClassImg": "src/views/weitao/icon/pic1.png"
+            }
+          ]
+        },
+        {
+          "fID": "s002",
+          "fRootID": "r001",
+          "fClassName": "男装",
+          "content": [
+            {
+              "fID": "t007",
+              "fSecondID": "s001",
+              "fClassName": "短袖T恤",
+              "fClassImg": "src/views/weitao/icon/pic2.png"
+            },
+            {
+              "fID": "t008",
+              "fSecondID": "s002",
+              "fClassName": "短袖衬衫",
+              "fClassImg": "src/views/weitao/icon/pic3.png"
+            },
+            {
+              "fID": "t009",
+              "fSecondID": "s002",
+              "fClassName": "POLO衫",
+              "fClassImg": "src/views/weitao/icon/pic4.png"
+            },
+            {
+              "fID": "t010",
+              "fSecondID": "s002",
+              "fClassName": "薄夹克",
+              "fClassImg": "src/views/weitao/icon/pic5.png"
+            },
+            {
+              "fID": "t011",
+              "fSecondID": "s002",
+              "fClassName": "薄毛衣",
+              "fClassImg": "src/views/weitao/icon/pic1.png"
+            }
+          ]
+        },
+        {
+          "fID": "s003",
+          "fRootID": "r001",
+          "fClassName": "女装",
+          "content": [
+            {
+              "fID": "t012",
+              "fSecondID": "s002",
+              "fClassName": "情侣T恤",
+              "fClassImg": "src/views/weitao/icon/pic2.png"
+            },
+            {
+              "fID": "t013",
+              "fSecondID": "s003",
+              "fClassName": "背心",
+              "fClassImg": "src/views/weitao/icon/pic3.png"
+            },
+            {
+              "fID": "t014",
+              "fSecondID": "s003",
+              "fClassName": "新品连衣裙",
+              "fClassImg": "src/views/weitao/icon/pic4.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "fID": "r002",
+      "fClassName": "女士服装",
+      "fPanel": [
+        {
+          "fID": "s004",
+          "fRootID": "r002",
+          "fClassName": "当季流行",
+          "content": [
+            {
+              "fID": "t001",
+              "fSecondID": "s001",
+              "fClassName": "纯色T恤",
+              "fClassImg": "src/views/weitao/icon/pic1.png"
+            },
+            {
+              "fID": "t002",
+              "fSecondID": "s001",
+              "fClassName": "潮流",
+              "fClassImg": "src/views/weitao/icon/pic2.png"
+            }
+          ]
+        },
+        {
+          "fID": "s005",
+          "fRootID": "r002",
+          "fClassName": "连衣裙",
+          "content": [
+            {
+              "fID": "t003",
+              "fSecondID": "s001",
+              "fClassName": "跑步鞋",
+              "fClassImg": "src/views/weitao/icon/pic3.png"
+            }
+          ]
+        },
+        {
+          "fID": "s006",
+          "fRootID": "r002",
+          "fClassName": "上衣",
+          "content": [
+            {
+              "fID": "t004",
+              "fSecondID": "s001",
+              "fClassName": "五分裤",
+              "fClassImg": "src/views/weitao/icon/pic4.png"
+            },
+            {
+              "fID": "t005",
+              "fSecondID": "s001",
+              "fClassName": "娃娃鞋",
+              "fClassImg": "src/views/weitao/icon/pic5.png"
+            },
+            {
+              "fID": "t006",
+              "fSecondID": "s001",
+              "fClassName": "搅拌料理机",
+              "fClassImg": "src/views/weitao/icon/pic1.png"
+            }
+          ]
+        },
+        {
+          "fID": "s007",
+          "fRootID": "r002",
+          "fClassName": "下搭",
+          "content": [
+            {
+              "fID": "t007",
+              "fSecondID": "s001",
+              "fClassName": "短袖T恤",
+              "fClassImg": "src/views/weitao/icon/pic2.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "fID": "r003",
+      "fClassName": "女士鞋包",
+      "fPanel": [
+        {
+          "fID": "s008",
+          "fRootID": "r003",
+          "fClassName": "女鞋",
+          "content": [
+            {
+              "fID": "t008",
+              "fSecondID": "s002",
+              "fClassName": "短袖衬衫",
+              "fClassImg": "src/views/weitao/icon/pic3.png"
+            }
+          ]
+        },
+        {
+          "fID": "s009",
+          "fRootID": "r003",
+          "fClassName": "女包",
+          "content": [
+            {
+              "fID": "t009",
+              "fSecondID": "s002",
+              "fClassName": "POLO衫",
+              "fClassImg": "src/views/weitao/icon/pic4.png"
+            }
+          ]
+        },
+        {
+          "fID": "s010",
+          "fRootID": "r003",
+          "fClassName": "旅行箱",
+          "content": [
+            {
+              "fID": "t010",
+              "fSecondID": "s002",
+              "fClassName": "薄夹克",
+              "fClassImg": "src/views/weitao/icon/pic5.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "fID": "r004",
+      "fClassName": "男士服装",
+      "fPanel": [
+        {
+          "fID": "s011",
+          "fRootID": "r004",
+          "fClassName": "家电办公",
+          "content": [
+            {
+              "fID": "t010",
+              "fSecondID": "s002",
+              "fClassName": "薄夹克",
+              "fClassImg": "src/views/weitao/icon/pic5.png"
+            },
+            {
+              "fID": "t011",
+              "fSecondID": "s002",
+              "fClassName": "薄毛衣",
+              "fClassImg": "src/views/weitao/icon/pic1.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "fID": "r005",
+      "fClassName": "男士鞋包",
+      "fPanel": [
+        {
+          "fID": "s014",
+          "fRootID": "r005",
+          "fClassName": "男鞋",
+          "content": [
+            {
+              "fID": "t029",
+              "fSecondID": "s014",
+              "fClassName": "新品连衣裙",
+              "fClassImg": "src/views/weitao/icon/pic4.png"
+            }
+          ]
+        },
+        {
+          "fID": "s015",
+          "fRootID": "r005",
+          "fClassName": "男包",
+          "content": [
+            {
+              "fID": "t030",
+              "fSecondID": "s015",
+              "fClassName": "雪纺连衣裙",
+              "fClassImg": "src/views/weitao/icon/pic5.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "fID": "r006",
+      "fClassName": "手机数码"
+    },
+    {
+      "fID": "r007",
+      "fClassName": "妈咪宝贝"
+    },
+    {
+      "fID": "r008",
+      "fClassName": "护肤彩妆"
+    },
+    {
+      "fID": "r009",
+      "fClassName": "家纺家饰"
+    },
+    {
+      "fID": "r010",
+      "fClassName": "美食酒饮"
+    },
+    {
+      "fID": "r011",
+      "fClassName": "家电办公"
+    },
+    {
+      "fID": "r012",
+      "fClassName": "运动户外"
+    },
+    {
+      "fID": "r013",
+      "fClassName": "珠宝配饰"
+    },
+    {
+      "fID": "r014",
+      "fClassName": "日用百货"
+    },
+    {
+      "fID": "r015",
+      "fClassName": "家具建材"
+    }
+  ]
+}

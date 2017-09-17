@@ -22,7 +22,7 @@ class Search extends Component {
                     </div>
                     <div className="title-center">
                         <i className="icon icon-ios7-search-strong"></i>
-                        <span className="text">芊芊玉手如何保养</span>
+                        <input className="text" type="text" placeholder="芊芊玉手如何保养"></input>
                         <div className="line"></div>
                     </div>
                     <div className="title-right">

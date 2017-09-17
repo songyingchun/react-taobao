@@ -7,7 +7,7 @@ import Banner from "@/components/banner/banner.jsx";
 import Pullup from "@/components/pullup/pullup.jsx";
 import Search from "@/components/search/index.jsx";
 import Nav from "@/components/nav/nav.jsx";
-import Config from "@/config/";
+import Config from "@/config";
 import ReactPullToRefresh from "react-pull-to-refresh";
 
 const NavList =()=> (
@@ -160,7 +160,7 @@ class Home extends Component {
     }
 
     fetch () {
-        fetch(Config.server.data.goodsData)
+        fetch(Config.server.url.home.goodsData)
             .then(res=>res.json())
             .then(data=>{
                 this.setState({
