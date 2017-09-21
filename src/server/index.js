@@ -19,6 +19,12 @@ if(local) {
             menuData: "src/views/weitao/data/menuData.json",
             secondClassData: "src/views/weitao/data/secondClassData.json",
             thirdClassData: "src/views/weitao/data/thirdClassData.json",
+        },
+        discover: {
+            goodsData: "src/views/discover/data/goodsData.json"
+        },
+        cart: {
+            goodsData: "src/views/cart/data/goodsData.json"
         }
     };
 }

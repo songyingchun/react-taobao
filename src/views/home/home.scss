@@ -165,7 +165,7 @@
         }
         .like-list{
             overflow: hidden;
-            .item{
+            .like-item{
                 padding: 10px;
                 float: left;
                 width: 50%;
@@ -175,6 +175,7 @@
                     img{
                         border-radius: 6px;
                         width: 100%;
+                        min-height: 190px;
                     }
                 }
                 .caption {

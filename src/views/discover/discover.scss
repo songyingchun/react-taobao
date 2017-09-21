@@ -7,6 +7,15 @@
     box-sizing: content-box;
     .empty {
         flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        .icon-wrapper{
+            padding: 8px 12px;
+            .icon{
+                font-size: 16px;
+            }
+        }
     }
     .search {
         flex: 2;
@@ -14,7 +23,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        padding: 12px 0;
+        padding: 10px 0;
         position: relative;
         .icon {
             width: 30px;
@@ -45,6 +54,9 @@
 }
 
 .option{
+    position: fixed;
+    top: 48px;
+    width: 100%;
     .option-wrapper {
         .option-list {
             display: flex;
@@ -61,6 +73,7 @@
                 }
                 .text{
                     margin-left: 5px;
+                    color: rgb(102, 102, 102);
                 }
                 &.type-option {
                     flex: 1;
@@ -69,6 +82,7 @@
         }
     }
     .panel-wrapper {
+        display: none;
         .panel-list{
             .panel-item{
                 display: none;
@@ -100,20 +114,146 @@
                         }
                     }
                 }
-                .filter-panel {
-                    .label{
-                        font-size: 14px;
+            }
+            .filter-panel {
+                .label{
+                    padding-top: 5px;
+                    font-size: 14px;
+                }
+                .area{
+                    padding: 10px 0;
+                    margin: 0 10px;
+                    border-bottom: 1px solid #eeeeee;
+                }
+                .price-area{
+                    display: flex;
+                    input{
+                        background-color: rgb(238, 238, 238);
+                        height: 30px;
+                        padding: 5px 10px;
+                        font-size: 12px;
+                        line-height: 1.5;
+                        border-radius: 3px;
+                        width: 118px;
+                        box-sizing: border-box;
                     }
-                    .price-area{
-                        padding: 10px;
-                        input{
-                            background-color: rgb(238, 238, 238);
-                            height: 30px;
-                            padding: 5px 10px;
+                    .to{
+                        padding-top: 5px;
+                        width: 14px;
+                        text-align: center;
+                    }
+                }
+                .service-area,.classify-area{
+                    .title{
+                        color: rgb(33, 33, 33);
+                        padding: 10px 0;
+                    }
+                    .icon-wrapper{
+                        padding: 5px 10px;
+                        float: right;
+                        .icon{
+                            color: rgb(33, 33, 33);
                             font-size: 12px;
                             line-height: 1.5;
-                            border-radius: 3px;
                         }
+                    }
+                    .tap-list{
+                        display: flex;
+                        .tap-item{
+                            flex: 1;
+                            box-sizing: border-box;
+                            margin: 10px 0;
+                            text-align: center;
+                            padding-right: 5px;
+                            .text{
+                                background: rgb(238, 238, 238);
+                                font-size: 12px;
+                                line-height: 30px;
+                                display: block;
+                                border-radius: 5px;
+                            }
+                        }
+                    }
+                }
+                .classify-area .title span{
+                    color: rgb(255, 68, 0);
+                }
+                .reset{
+                    padding: 15px;
+                    display: flex;
+                    justify-content: space-around;
+                    .text{
+                        border:1px solid rgb(255, 68, 0);
+                        background-color: rgb(255, 255, 255);
+                        color: rgb(255, 68, 0);
+                        padding: 4px 20px;
+                        border-radius: 3px;
+                        font-size: 12px;
+                    }
+                }
+                .confirm {
+                    margin-top: 20px;
+                    background-color: rgb(255, 68, 0);
+                    .text{
+                        color: rgb(255, 255, 255);
+                        font-size: 18px;
+                        line-height:1.33;
+                        padding: 14px 16px;
+                        display: block;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+    .masker{display: none;}
+}
+
+.goods-list{
+    background: #fff;
+    position: absolute;
+    width: 100%;
+    .goods-wrapper{
+        padding-bottom: 40px;
+        .goods-item{
+            padding: 10px;
+            display: flex;
+            border-bottom: 1px solid rgb(231, 231, 231);
+            .pic{
+                padding: 0 10px 10px 0;
+                width: 75px;
+                height: 75px;
+                img{
+                    width: 75px;
+                    border-radius: 6px;
+                }
+            }
+            .text-wrapper{
+                flex: 1;
+                .caption {
+                    .text{
+                        color: rgb(33, 33, 33);
+                        padding-bottom: 5px;
+                        font-size: 14px;
+                        font-weight: 300;
+                        line-height: 1.4;
+                    }
+                }
+                .price{
+                    .icon{
+                        font-size: 13px;
+                        color: rgb(255, 68, 0);
+                    }
+                    .text{
+                        font-size: 13px;
+                        color: rgb(255, 68, 0);
+                    }
+                }
+                .info {
+                    span{
+                        color: #999;
+                        font-size: 12px;
+                        margin-right: 5px;
                     }
                 }
             }

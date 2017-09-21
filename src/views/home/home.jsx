@@ -9,7 +9,7 @@ import Search from "@/components/search/index.jsx";
 import Nav from "@/components/nav/nav.jsx";
 import Config from "@/config";
 import ReactPullToRefresh from "react-pull-to-refresh";
-
+import BScroll from "better-scroll";
 const NavList =()=> (
     <div className="list">
         <div className="item">
@@ -86,6 +86,13 @@ class Like extends Component {
         super(props);
     }
 
+    componentDidUpdate () {
+        console.log("componentDidMount");
+        const scroll = new BScroll(this.refs.likeList, {
+            click: true
+        });
+    }
+
     list () {
         const data = this.props.data;
         const list = [];
@@ -94,7 +101,7 @@ class Like extends Component {
                 let item = data[i];
                 console.log(item);
                 list.push(
-                    <div className="item" key={i}>
+                    <li className="like-item" key={i}>
                         <div className="pic">
                             <img src={item.fImg} alt=""/>
                         </div>
@@ -113,7 +120,7 @@ class Like extends Component {
                                 <span className="right">{item.fPostage}</span>
                             </div>
                         </div>
-                    </div>
+                    </li>
                 );
             }
         }
@@ -134,12 +141,8 @@ class Like extends Component {
         return (
             <div className="like">
                 <div className="title">猜您喜欢</div>
-                <div className="like-list">
-                    <ReactPullToRefresh
-                        onRefresh={this.handleRefresh}
-                    >
-                        <div>{List}</div>
-                    </ReactPullToRefresh>
+                <div className="like-list" ref="likeList">
+                    <ul>{List}</ul>
                 </div>
                 <Pullup/>
             </div>

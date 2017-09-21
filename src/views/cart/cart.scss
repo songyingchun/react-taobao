@@ -1,0 +1,162 @@
+.cart{
+    .cart-title {
+        height: 48px;
+        background: rgb(255, 68, 0);
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+        color: #fff;
+        line-height: 48px;
+    }
+    .content{
+        .cart-list{
+            .cart-item{
+                margin-bottom: 10px;
+                border-top: 1px solid #eee;
+                border-bottom: 1px solid #eee;
+                background: #fff;
+                .head{
+                    color: #333;
+                    padding: 5px 15px;
+                    border-bottom: 1px solid #eee;
+                    .icon{
+                        margin-right: 13px;
+                    }
+                    img{
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        vertical-align: middle;
+                    }
+                }
+                .pic-text{
+                    display: flex;
+                    padding: 5px;
+                    align-items: center;
+                    .label{
+                        font-size: 14px;
+                        display: inline-block;
+                        width: 20px;
+                        height: 20px;
+                        vertical-align: center;
+                        margin: 5px;
+                        border: 1px solid #cacece;
+                        border-radius: 4px;
+                        &.active{
+                            background-color: #2fa4e7;
+                        }
+                        &.active:before{
+                            content: '\00a0\2714';
+                            color: #fff;
+                        }
+                    }
+                    .pic{
+                        width: 95px;
+                        height: 95px;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .text-wrapper{
+                        margin-left: 5px;
+                        flex: 1;
+                        .text{
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            color: rgb(85, 85, 85);
+                            font-size: 14px;
+                            line-height: 1.1;
+                        }
+                        .color-text{
+                            color: #999;
+                            font-size: 12px;
+                        }
+                        .price {
+                            span {
+                                color: #b94a48;
+                                &.line-through{
+                                    text-decoration: line-through;
+                                    color: #999;
+                                }
+                            }
+                        }
+                        .numberOperation {
+                            display: flex;
+                            span{
+                                padding: 3px 8px;
+                                border-top: 1px solid rgb(225, 225, 225);
+                                border-bottom: 1px solid rgb(225, 225, 225);
+                                font-size: 12px;
+                                line-height: 1.6;
+                                box-sizing: border-box;
+                            }
+                            .icon{
+                                color: #ffffff;
+                                background-color: #e7e7e7;
+                                border-color: #e7e7e7;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .account-bar{
+        height: 50px;
+        position: fixed;
+        width: 100%;
+        bottom: 55px;
+        box-sizing: border-box;
+        border-top: 1px solid rgb(220, 220, 220);
+        border-bottom: 1px solid rgb(220, 220, 220);
+        display: flex;
+        justify-content: space-between;
+        .select-all{
+            padding: 15px 5px;
+            .label{
+                font-size: 14px;
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                vertical-align: middle;
+                border: 1px solid #cacece;
+                border-radius: 4px;
+                background: #fff;
+                box-sizing: border-box;
+                margin-right: 5px;
+                &.active{
+                    background-color: #2fa4e7;
+                }
+                &.active:before{
+                    content: '\00a0\2714';
+                    color: #fff;
+                }
+            }
+        }
+        .text-wrapper{
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            padding: 5px;
+            .total-wrapper{
+                .total{
+                    .label{
+                        color: #999;
+                    }
+                    .text{
+                        color: #b94a48;
+                    }
+                }
+            }
+        }
+        .account-button{
+            background: rgb(253, 80, 1);
+            color: #fff;
+            font-size:16px;
+            width: 130px;
+            text-align: center;
+            line-height: 50px;
+        }
+    }
+}
