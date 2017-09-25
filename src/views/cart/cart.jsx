@@ -13,74 +13,90 @@ const CartTitle = () => {
 };
 
 class CartList extends Component {
-    constructor(props) {
+    constructor(props, context) {
         super(props);
-
         this.state = {
-            selectList: []
+            data: this.props.data
         };
     }
 
-    select(index, picTextIndex) {
-        const picTextItem = this.state.data[index].fContent[picTextIndex];
-        picTextItem.isActive = !picTextItem.isActive;
-        this.setState({data});
+    componentWillMount () {
+        console.log("componentWillMount");
+    }
+
+    componentDidMount () {
+        console.log("componentDidMount");
+    }
+
+    componentWillReceiveProps () {
+        console.log("componentWillReceiveProps");
+    }
+
+    shouldComponentUpdate () {
+        console.log("shouldComponentUpdate");
+        return true;
+    }
+
+    componentWillUpdate () {
+        console.log("componentWillUpdate");
     }
 
     render() {
         return (
             <div className="cart-list">
                 {
-                    !this.props.loaded ? "" :
-                        this.props.data.map((item, index) => {
-                            return (
-                                <div className="cart-item" key={index}>
-                                    <div className="head">
-                                        <i className="icon icon-chevron-right"></i>
-                                        <img src={item.fShopImg} alt=""/>
-                                        <span className="name">{item.fShopName}</span>
-                                    </div>
-                                    <div className="pic-text-list">
-                                        {
-                                            item.fContent.map((picTextItem, picTextIndex) => {
-                                                return (
-                                                    <div className="pic-text-item" key={picTextIndex}>
-                                                        <div className="pic-text">
-                                                            <span className="label"
-                                                                  onClick={this.select.bind(this, index, picTextIndex)}></span>
-                                                            <div className="pic">
-                                                                <img src={picTextItem.fImg} alt=""/>
+                    this.state.data.map((item, index) => {
+                        return (
+                            <div className="cart-item" key={index}>
+                                <div className="head">
+                                    <i className="icon icon-chevron-right"></i>
+                                    <img src={item.fShopImg} alt=""/>
+                                    <span className="name">{item.fShopName}</span>
+                                </div>
+                                <div className="pic-text-list">
+                                    {
+                                        item.fContent.map((picTextItem, picTextIndex) => {
+                                            return (
+                                                <div className="pic-text-item" key={picTextIndex}>
+                                                    <div className="pic-text">
+                                                        <span className={"label" + (picTextItem.isActive ? " active": "")} onClick={this.props.select.bind(this, index, picTextIndex)}></span>
+                                                        <div className="pic">
+                                                            <img src={picTextItem.fImg} alt=""/>
+                                                        </div>
+                                                        <div className="text-wrapper">
+                                                            <div className="text">{picTextItem.fTitle}</div>
+                                                            <div className="color-text">
+                                                                {picTextItem.fColor ? "颜色:" + picTextItem.fColor + ";" : ""}
+                                                                {picTextItem.fSize ? "尺寸:" + picTextItem.fSize + ";" : ""}
                                                             </div>
-                                                            <div className="text-wrapper">
-                                                                <div className="text">{picTextItem.fTitle}</div>
-                                                                <div className="color-text">
-                                                                    {picTextItem.fColor ? "颜色:" + picTextItem.fColor + ";" : ""}
-                                                                    {picTextItem.fSize ? "尺寸:" + picTextItem.fSize + ";" : ""}
-                                                                </div>
-                                                                <div className="price">
-                                                                    <span
-                                                                        className="text">￥{picTextItem.fOldPrice}</span>
-                                                                    <span
-                                                                        className="text line-through">￥{picTextItem.fPrice}</span>
-                                                                </div>
-                                                                <div className="numberOperation">
-                                                                    <span className="icon icon-android-remove"></span>
-                                                                    <span className="number">1</span>
-                                                                    <span className="icon icon-android-add"></span>
-                                                                </div>
+                                                            <div className="price">
+                                                                <span
+                                                                    className="text">￥{picTextItem.fPrice}</span>
+                                                                <span
+                                                                    className="text line-through">￥{picTextItem.fOldPrice}</span>
+                                                            </div>
+                                                            <div className="numberOperation">
+                                                                <span className="icon icon-android-remove" onClick={this.props.selectNumber.bind(this, index, picTextIndex, -1)}></span>
+                                                                <span className="number">{picTextItem.selectNumber || 0}</span>
+                                                                <span className="icon icon-android-add" onClick={this.props.selectNumber.bind(this, index, picTextIndex, 1)}></span>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                );
-                                            })
-                                        }
-                                    </div>
+                                                </div>
+                                            );
+                                        })
+                                    }
                                 </div>
-                            );
-                        })
+                            </div>
+                        );
+                    })
                 }
             </div>
         );
+    }
+
+    componentDidUpdate () {
+        console.log("componentDidUpdate");
     }
 }
 
@@ -91,22 +107,23 @@ class AccountBar extends Component {
     }
 
     render() {
+        console.log(this.props.isSelectAll);
         return (
             <div className="account-bar">
-                <div className="select-all">
-                    <span className="label"></span>全选
+                <div className="select-all" onClick={this.props.selectAll.bind(this)}>
+                    <span className={"label" + (this.props.isSelectAll ? " active" : "")}></span>全选
                 </div>
                 <div className="text-wrapper">
                     <div className="total-wrapper">
                         <div className="total">
                             <span className="label">合计：</span>
-                            <span className="text">{}</span>
+                            <span className="text">{"￥" + this.props.account}</span>
                         </div>
                         <p className="tips">不含运费</p>
                     </div>
                 </div>
                 <div className="account-button">
-                    结算({})
+                    结算({this.props.number})
                 </div>
             </div>
         );
@@ -116,7 +133,11 @@ class AccountBar extends Component {
 class Cart extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            number: 0,
+            isSelectAll: false,
+            account: 0
+        };
     }
 
     componentDidMount() {
@@ -139,12 +160,80 @@ class Cart extends Component {
             <div className="cart">
                 <CartTitle/>
                 <div className="content">
-                    <CartList {...this.state}/>
+                    {!this.state.loaded ? "" : <CartList {...this.state} select={this.select.bind(this)} selectNumber={this.selectNumber.bind(this)}/>}
                 </div>
-                <AccountBar {...this.state}/>
+                {!this.state.loaded ? "" : <AccountBar {...this.state} selectAll={this.selectAll.bind(this)}/>}
                 <Nav pathname={this.props.location.pathname}/>
             </div>
         );
+    }
+
+    select(index, picTextIndex) {
+        const picTextItem = this.state.data[index].fContent[picTextIndex];
+        let {isActive, selectNumber = 0, fPrice} = picTextItem;
+        let {number, account, data} = this.state;
+        let count = 1;
+        isActive = !isActive;
+        if(!isActive) {
+            count = -1;
+        }else {
+            if(!selectNumber) {
+                selectNumber += 1;
+            }
+        }
+        picTextItem.isActive = isActive;
+        picTextItem.selectNumber = selectNumber;
+        console.log(selectNumber);
+        number += count;
+        if(number <= 0) {
+            number = 0;
+        }
+        this.setState({
+            number,
+            account: account + (selectNumber || 0) * count * parseFloat(fPrice),
+            data: this.state.data,
+        });
+    }
+
+    selectAll() {
+        let {account, number, isSelectAll, data} = this.state;
+        let count = 1;
+        isSelectAll = !isSelectAll;
+        if(!isSelectAll) {
+            count = -1;
+        }
+        this.state.data.map((item, index)=>{
+            item.fContent.map((picTextItem, picTextIndex)=>{
+                picTextItem.isActive = !picTextItem.isActive;
+                number += 1 * count;
+                if(!picTextItem.selectNumber) {
+                    picTextItem.selectNumber = 1;
+                }
+                account += (picTextItem.selectNumber || 0) * count * parseFloat(picTextItem.fPrice);
+            });
+        });
+        this.setState({
+            data: this.state.data,
+            isSelectAll,
+            account,
+            number
+        });
+    }
+
+    selectNumber(index, picItemIndex, count) {
+        const picTextItem = this.state.data[index].fContent[picItemIndex];
+        picTextItem.selectNumber = (picTextItem.selectNumber || 0) + count;
+        if(picTextItem.selectNumber <= 0) {
+            picTextItem.selectNumber = 0;
+            picTextItem.isActive = false;
+        }else {
+            picTextItem.isActive = true;
+        }
+
+        this.setState({
+            data: this.state.data,
+            account: this.state.account + count * parseFloat(picTextItem.fPrice)
+        });
     }
 }
 
