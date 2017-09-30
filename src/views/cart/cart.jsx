@@ -2,6 +2,12 @@
  * Created by songyingchun on 2017/9/12.
  */
 import React, {Component} from "react";
+import Router,{
+    BrowserRouter,
+    HashRouter,
+    Route,
+    Link
+} from "react-router-dom";
 import "./cart.scss";
 import Nav from "@/components/nav/nav.jsx";
 import Config from "@/config";
@@ -42,6 +48,7 @@ class CartList extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <div className="cart-list">
                 {
@@ -60,7 +67,7 @@ class CartList extends Component {
                                                 <div className="pic-text-item" key={picTextIndex}>
                                                     <div className="pic-text">
                                                         <span className={"label" + (picTextItem.isActive ? " active": "")} onClick={this.props.select.bind(this, index, picTextIndex)}></span>
-                                                        <div className="pic">
+                                                        <div className="pic" onClick={this.props.picRoute.bind(this, picTextItem)}>
                                                             <img src={picTextItem.fImg} alt=""/>
                                                         </div>
                                                         <div className="text-wrapper">
@@ -77,7 +84,7 @@ class CartList extends Component {
                                                             </div>
                                                             <div className="numberOperation">
                                                                 <span className="icon icon-android-remove" onClick={this.props.selectNumber.bind(this, index, picTextIndex, -1)}></span>
-                                                                <span className="number">{picTextItem.selectNumber || 0}</span>
+                                                                <span className="number">{picTextItem.selectNumber || 1}</span>
                                                                 <span className="icon icon-android-add" onClick={this.props.selectNumber.bind(this, index, picTextIndex, 1)}></span>
                                                             </div>
                                                         </div>
@@ -160,7 +167,7 @@ class Cart extends Component {
             <div className="cart">
                 <CartTitle/>
                 <div className="content">
-                    {!this.state.loaded ? "" : <CartList {...this.state} select={this.select.bind(this)} selectNumber={this.selectNumber.bind(this)}/>}
+                    {!this.state.loaded ? "" : <CartList {...this.state} select={this.select.bind(this)} selectNumber={this.selectNumber.bind(this)} picRoute={this.picRoute.bind(this)}/>}
                 </div>
                 {!this.state.loaded ? "" : <AccountBar {...this.state} selectAll={this.selectAll.bind(this)}/>}
                 <Nav pathname={this.props.location.pathname}/>
@@ -183,14 +190,13 @@ class Cart extends Component {
         }
         picTextItem.isActive = isActive;
         picTextItem.selectNumber = selectNumber;
-        console.log(selectNumber);
         number += count;
         if(number <= 0) {
             number = 0;
         }
         this.setState({
             number,
-            account: account + (selectNumber || 0) * count * parseFloat(fPrice),
+            account: account + (selectNumber || 1) * count * parseFloat(fPrice),
             data: this.state.data,
         });
     }
@@ -209,7 +215,7 @@ class Cart extends Component {
                 if(!picTextItem.selectNumber) {
                     picTextItem.selectNumber = 1;
                 }
-                account += (picTextItem.selectNumber || 0) * count * parseFloat(picTextItem.fPrice);
+                account += (picTextItem.selectNumber || 1) * count * parseFloat(picTextItem.fPrice);
             });
         });
         this.setState({
@@ -220,7 +226,7 @@ class Cart extends Component {
         });
     }
 
-    selectNumber(index, picItemIndex, count) {
+    selectNumber (index, picItemIndex, count) {
         const picTextItem = this.state.data[index].fContent[picItemIndex];
         picTextItem.selectNumber = (picTextItem.selectNumber || 0) + count;
         if(picTextItem.selectNumber <= 0) {
@@ -233,6 +239,13 @@ class Cart extends Component {
         this.setState({
             data: this.state.data,
             account: this.state.account + count * parseFloat(picTextItem.fPrice)
+        });
+    }
+
+    picRoute (picTextItem) {
+        this.props.history.push({
+            pathname: "detail",
+            search: "?goodsID=" + picTextItem.id + "&shopID=" + picTextItem.fShopID,
         });
     }
 }

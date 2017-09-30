@@ -25,6 +25,12 @@ if(local) {
         },
         cart: {
             goodsData: "src/views/cart/data/goodsData.json"
+        },
+        detail: {
+            goodsData: "src/views/detail/data/goodsData.json",
+            commentsData: "src/views/detail/data/commentsData.json",
+            imgData: "src/views/detail/data/imgData.json",
+            shopData: "src/views/detail/data/shopData.json"
         }
     };
 }
