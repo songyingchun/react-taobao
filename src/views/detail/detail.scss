@@ -294,4 +294,82 @@
             background-color: rgb(253, 80, 1);
         }
     }
+    .detail-masker{
+        top: 0;
+        z-index: 10;
+        display: none;
+        &.active{
+            display: block;
+        }
+        .color-classify{
+            background: #fff;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+            .pic-text{
+                display: flex;
+                padding: 15px 15px 0 15px;
+                .pic{
+                    width: 104px;
+                }
+                .text-wrapper{
+                    flex: 1;
+                    margin: 10px;
+                    .price{
+                        color: rgb(255, 68, 0);
+                    }
+                    .store{
+                        color: #555;
+                    }
+                    .text{}
+                }
+            }
+            .close{
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 30px;
+            }
+            .color-classify-title{
+                color: rgb(33, 33, 33);
+                font-size: 18px;   
+                margin-bottom: 10px;
+                padding: 0 15px;
+            }
+            .color-classify-list{
+                padding: 0 15px 15px;
+                display: flex;    
+                flex-wrap: wrap;
+                justify-content: space-between;
+                .color-classify-item{
+                    color: #555;
+                    text-align: center;
+                    font-size: 14px;
+                    line-height: 30px;
+                    background-color: rgb(239, 239, 239);
+                    border-radius: 5px;
+                    width: 185px;
+                    margin-bottom: 10px;
+                }
+            }
+            .color-classify-bar{
+                display: flex;
+                .cart, .buy{
+                    flex: 1;
+                    font-size: 14px;
+                    color: #fff;
+                    height: 48px;
+                    line-height: 48px;
+                    text-align: center;
+                }
+                .cart{
+                    background: rgb(254, 145, 0);
+                }
+                .buy{
+                    background: rgb(253, 80, 1);
+                }
+            }
+        }
+    }
 }
