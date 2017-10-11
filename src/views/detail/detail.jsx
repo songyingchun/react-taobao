@@ -162,19 +162,47 @@ class Shop extends Component {
                 </div>
                 <div className="pic-box">
                     <div className="ctroller ctrl-list">
-                        <span className="ctrl-item active">
+                        <span className={"ctrl-item" + (this.props.panelItemIndex === 0 ? " active" : "")} onClick={this.props.handlePanelItemIndex.bind(this, 0)}>
                             图文详情
                         </span>
-                        <span className="ctrl-item">
+                        <span className={"ctrl-item" + (this.props.panelItemIndex === 1 ? " active" : "")} onClick={this.props.handlePanelItemIndex.bind(this, 1)}>
                             产品参数
                         </span>
                     </div>
                     <div className="content">
-                        <div className="pic">
-                            <img src={goodsData.fImg} alt=""/>
-                        </div>
-                        <div className="text">
-                            {goodsData.fDetail}
+                        <div className="panel-list">
+                            <div className={"panel-item" + (this.props.panelItemIndex === 0 ? " active" : "")}>
+                                <div className="pic">
+                                    <img src={goodsData.fImg} alt=""/>
+                                </div>
+                                <div className="text">
+                                    {goodsData.fDetail}
+                                </div>
+                            </div>
+                            <div className={"panel-item" + (this.props.panelItemIndex === 1 ? " active" : "")}>
+                                <div className="materail-list">
+                                    <div className="materail-item">
+                                        <span className="label">材质成分</span>
+                                        <span className="text">聚酯纤维</span>
+                                    </div>
+                                    <div className="materail-item">
+                                        <span className="label">销售渠道</span>
+                                        <span className="text">纯电商</span>
+                                    </div>
+                                    <div className="materail-item">
+                                        <span className="label">品牌</span>
+                                        <span className="text">左微微</span>
+                                    </div>
+                                    <div className="materail-item">
+                                        <span className="label">服装版型</span>
+                                        <span className="text">修身</span>
+                                    </div>
+                                    <div className="materail-item">
+                                        <span className="label">厚薄</span>
+                                        <span className="text">厚</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -218,7 +246,9 @@ class DetailNav extends Component {
 class Masker extends Component {
     constructor (props){
         super(props);
-        this.state = {};
+        this.state = {
+            colorClassify: ["草绿", "橙色", "蓝色", "粉红", "黑色", "红色", "黄色", "绿色", "黑蓝", "天蓝", "紫色", "棕色", "12色混装"]
+        };
     }
     render() {
         const data = this.props.goodsData[0];
@@ -242,50 +272,20 @@ class Masker extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="close icon-ios7-close-outline icon"></div>
+                        <div className="close icon-ios7-close-outline icon" onClick={this.props.hideColorClassifyMasker.bind(this)}></div>
                         <div className="color-classify-title">
                             颜色分类
                         </div>
                         <div className="color-classify-list">
-                            <div className="color-classify-item">
-                                草绿（12支/盒）
-                            </div>
-                            <div className="color-classify-item">
-                                橙色（12支/盒）
-                            </div>
-                            <div className="color-classify-item">
-                                蓝色（12支/盒）
-                            </div>
-                            <div className="color-classify-item">
-                                粉红（12支/盒）
-                            </div>
-                            <div className="color-classify-item">
-                                黑色（12支/盒）
-                            </div>
-                            <div className="color-classify-item">
-                                红色（12支/盒）
-                            </div>
-                            <div className="color-classify-item">
-                                黄色（12支/盒）
-                            </div>
-                            <div className="color-classify-item">
-                                绿色（12支/盒）
-                            </div>
-                            <div className="color-classify-item">
-                                黑蓝（12支/盒）
-                            </div>
-                            <div className="color-classify-item">
-                                天蓝（12支/盒）
-                            </div>
-                            <div className="color-classify-item">
-                                紫色（12支/盒）
-                            </div>
-                            <div className="color-classify-item">
-                                棕色（12支/盒）
-                            </div>
-                            <div className="color-classify-item">
-                                12色混装（12支/盒）
-                            </div>
+                            (
+                                this.state.colorClassify.map(function (item) {
+                                    (
+                                        <div className="color-classify-item">
+                                            {item} (12支/盒)
+                                        </div>
+                                    )
+                                });
+                            )
                         </div>
                         <div className="color-classify-bar">
                             <div className="cart">
@@ -306,7 +306,8 @@ class Detail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isShowColorClassifyMasker: false
+            isShowColorClassifyMasker: false,
+            panelItemIndex: 0,
         };
     }
 
@@ -361,6 +362,12 @@ class Detail extends Component {
         });
     }
 
+    handlePanelItemIndex (index) {
+        this.setState({ 
+            "panelItemIndex": index
+        });
+    }
+
     render() {
         console.log(this.state);
         return (
@@ -378,7 +385,7 @@ class Detail extends Component {
                 {this.state.loadedGoodsData ? <DetailInfo {...this.state}/> : ""}
                 <SelectColor {...this.state} showColorClassifyMasker={this.showColorClassifyMasker.bind(this)}/>
                 {this.state.loadedCommentsData ? <Comment {...this.state}/> : ""}
-                {this.state.loadedShopData && this.state.loadedGoodsData ? <Shop {...this.state}/> : ""}
+                {this.state.loadedShopData && this.state.loadedGoodsData ? <Shop {...this.state} handlePanelItemIndex={this.handlePanelItemIndex.bind(this)}/> : ""}
                 {this.state.loadedGoodsData ? <Masker {...this.state} hideColorClassifyMasker={this.hideColorClassifyMasker.bind(this)}/> : ""}
                 <DetailNav/>
             </div>

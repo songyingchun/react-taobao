@@ -246,16 +246,38 @@
             .content{
                 padding: 15px;
                 background: #fff;
-                .pic{
-                    height: 278px;
-                    img{
-                        width: 100%;
-                        height: 100%;
+                .panel-item{
+                    display: none;
+                    &.active{
+                        display: block;
                     }
-                }
-                .text{
-                    margin-top: 20px;
-                    color: #999;
+                    .pic{
+                        height: 278px;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .text{
+                        margin-top: 20px;
+                        color: #999;
+                    }
+                    .materail-list{
+                        .materail-item{
+                            display: flex;
+                            border-bottom: 1px solid #eee;
+                            padding: 10px 15px;
+                            .label{
+                                color: #999;
+                                flex: 1;
+                            }
+                            .text{
+                                color: #555;
+                                flex: 2;
+                                margin-top: 0;
+                            }
+                        }
+                    }
                 }
             }
         }
