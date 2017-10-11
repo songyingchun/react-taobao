@@ -232,7 +232,7 @@ class DetailNav extends Component {
                     <i className="icon icon-ios7-star-outline"></i>
                     <span className="text">收藏</span>
                 </div>
-                <div className="nav-cart">
+                <div className="nav-cart" onClick={this.props.showColorClassifyMasker.bind(this)}>
                     <span className="text">加入购物车</span>
                 </div>
                 <div className="nav-buy">
@@ -247,12 +247,19 @@ class Masker extends Component {
     constructor (props){
         super(props);
         this.state = {
-            colorClassify: ["草绿", "橙色", "蓝色", "粉红", "黑色", "红色", "黄色", "绿色", "黑蓝", "天蓝", "紫色", "棕色", "12色混装"]
+            colorClassify: ["草绿", "橙色", "蓝色", "粉红", "黑色", "红色", "黄色", "绿色", "黑蓝", "天蓝", "紫色", "棕色", "12色混装"],
+            colorClassifyIndex: 0,
         };
     }
+
+    handleColorClassifyIndex (index) {
+        this.setState({
+            colorClassifyIndex: index
+        });
+    }
+
     render() {
         const data = this.props.goodsData[0];
-        console.log(this.props);
         return (
             <div>
                 <div className={"masker detail-masker" + (this.props.isShowColorClassifyMasker ? " active" : "")}>
@@ -277,15 +284,15 @@ class Masker extends Component {
                             颜色分类
                         </div>
                         <div className="color-classify-list">
-                            (
-                                this.state.colorClassify.map(function (item) {
-                                    (
-                                        <div className="color-classify-item">
+                            {
+                                this.state.colorClassify.map((item, index)=>{
+                                    return (
+                                        <div className={"color-classify-item" + (this.state.colorClassifyIndex === index ? " active" : "") } key={index} onClick={this.handleColorClassifyIndex.bind(this, index)}>
                                             {item} (12支/盒)
                                         </div>
-                                    )
-                                });
-                            )
+                                    );
+                                })
+                            }
                         </div>
                         <div className="color-classify-bar">
                             <div className="cart">
@@ -368,14 +375,18 @@ class Detail extends Component {
         });
     }
 
+    historyBack () {
+        this.props.history.goBack();
+    }
+
     render() {
         console.log(this.state);
         return (
             <div className="detail">
-                <div className="back icon-wrapper">
+                <div className="back icon-wrapper" onClick={this.historyBack.bind(this)}>
                     <i className="icon icon-chevron-left"></i>
                 </div>
-                <div className="cart icon-wrapper">
+                <div className="cart icon-wrapper" onClick={this.historyBack.bind(this)}>
                     <i className="icon icon-ios7-cart"></i>
                 </div>
                 <div className="more icon-wrapper">
@@ -387,7 +398,7 @@ class Detail extends Component {
                 {this.state.loadedCommentsData ? <Comment {...this.state}/> : ""}
                 {this.state.loadedShopData && this.state.loadedGoodsData ? <Shop {...this.state} handlePanelItemIndex={this.handlePanelItemIndex.bind(this)}/> : ""}
                 {this.state.loadedGoodsData ? <Masker {...this.state} hideColorClassifyMasker={this.hideColorClassifyMasker.bind(this)}/> : ""}
-                <DetailNav/>
+                <DetailNav showColorClassifyMasker={this.showColorClassifyMasker.bind(this)}/>
             </div>
         );
     }

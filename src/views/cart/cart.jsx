@@ -129,7 +129,7 @@ class AccountBar extends Component {
                         <p className="tips">不含运费</p>
                     </div>
                 </div>
-                <div className="account-button">
+                <div className="account-button" onClick={this.props.routerOrder.bind(this)}>
                     结算({this.props.number})
                 </div>
             </div>
@@ -162,6 +162,13 @@ class Cart extends Component {
             });
     }
 
+    routerOrder(){
+        console.log(this);
+        this.props.history.push({
+            pathname: "order"
+        });
+    }
+
     render() {
         return (
             <div className="cart">
@@ -169,7 +176,7 @@ class Cart extends Component {
                 <div className="content">
                     {!this.state.loaded ? "" : <CartList {...this.state} select={this.select.bind(this)} selectNumber={this.selectNumber.bind(this)} picRoute={this.picRoute.bind(this)}/>}
                 </div>
-                {!this.state.loaded ? "" : <AccountBar {...this.state} selectAll={this.selectAll.bind(this)}/>}
+                {!this.state.loaded ? "" : <AccountBar {...this.state} routerOrder={this.routerOrder.bind(this)} selectAll={this.selectAll.bind(this)}/>}
                 <Nav pathname={this.props.location.pathname}/>
             </div>
         );

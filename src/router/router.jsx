@@ -17,6 +17,7 @@ import Discover from "@/views/discover/discover.jsx";
 import Cart from "@/views/cart/cart.jsx";
 import Person from "@/views/person/person.jsx";
 import Detail from "@/views/detail/detail.jsx";
+import Order from "@/views/order/order.jsx";
 
 if(env === "development") {
 
@@ -32,6 +33,7 @@ const router = () => (
             <Route path="/cart" component={Cart}/>
             <Route path="/person" component={Person}/>
             <Route path="/detail" component={Detail}/>
+            <Route path="/order" component={Order}/>
         </div>
     </HashRouter>
 );

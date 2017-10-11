@@ -373,6 +373,10 @@
                     border-radius: 5px;
                     width: 185px;
                     margin-bottom: 10px;
+                    &.active{
+                        background: rgb(255, 68, 0);
+                        color: #fff;
+                    }
                 }
             }
             .color-classify-bar{
