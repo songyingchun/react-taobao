@@ -1,0 +1,75 @@
+.person-page {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #eee;
+    .login-content{
+        .login-panel{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150px;
+            .login-button, .register-button{
+                width: 100px;
+                color: #ffffff;
+                font-size: 14px;
+                padding: 8px 12px;
+                margin: 0 5px;
+                text-align: center;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+            .login-button {
+                background-color: #73a839;
+                border-color: #73a839;
+            }
+            .register-button {
+                background-color: #dd5600;
+                border-color: #dd5600;
+            }
+        }
+        .router-list{
+            display: flex;
+            background: #fff;
+            padding: 5px 0;
+            .router-item{
+                padding: 8px 12px;
+                flex: 1;
+                color: #999999;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                .icon{
+                    
+                }
+                .text{
+                    font-size: 14px;
+                    line-height: 1.4;
+                }
+            }
+        }
+        .login-list{
+            background: #fff;
+            .login-item{
+                padding: 10px 15px;
+                border-top: 1px solid #eee;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .left{
+                    color: #555;
+                    .icon{
+                        margin-left: 5px;
+                    }
+                }
+                .right{
+                    color: #999;
+                    .icon{
+                        margin-left: 5px;
+                    }
+                }
+            }
+        }
+    }
+}

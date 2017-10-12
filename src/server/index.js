@@ -31,6 +31,10 @@ if(local) {
             commentsData: "src/views/detail/data/commentsData.json",
             imgData: "src/views/detail/data/imgData.json",
             shopData: "src/views/detail/data/shopData.json"
+        },
+        order: {
+            deliveryInfo: "src/views/order/data/deliveryInfo.json",
+            order: "src/views/order/data/order.json"
         }
     };
 }

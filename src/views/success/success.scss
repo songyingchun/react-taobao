@@ -1,0 +1,57 @@
+.success-page{
+    .success-title{
+        height: 48px;
+        background: rgb(255, 68, 0);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 20px;
+        .text{
+            font-size: 20px;
+            color: #fff;
+        }
+        .icon{
+            font-size: 20px;
+            color: #fff;
+            margin-left: 5px;
+        }
+    }
+    .success-content{
+        padding: 15px;
+        background: #fff;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        top: 48px;
+        box-sizing: border-box;
+        .success-info{
+            margin-bottom: 10px;
+            .success-name{
+                padding: 10px 47px;
+                display: flex;
+                justify-content: space-between;
+                .name{
+                    color: #468847;
+                    font-size: 18px;
+                }
+            }
+            .success-address{
+                display: flex;
+                align-items: center;
+                .icon{
+                    font-size: 16px;
+                    padding: 8px 12px;
+                    color: #468847;
+                }
+                .address{
+                    margin-left: 8px;
+                }
+            }
+            .success-tips{
+                padding: 10px 47px;
+                color: #c09853;
+            }
+        }
+    }
+}

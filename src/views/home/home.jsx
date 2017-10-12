@@ -87,10 +87,7 @@ class Like extends Component {
     }
 
     componentDidUpdate () {
-        console.log("componentDidMount");
-        const scroll = new BScroll(this.refs.likeList, {
-            click: true
-        });
+        
     }
 
     list () {
@@ -144,7 +141,6 @@ class Like extends Component {
                 <div className="like-list" ref="likeList">
                     <ul>{List}</ul>
                 </div>
-                <Pullup/>
             </div>
         );
     }
@@ -175,7 +171,7 @@ class Home extends Component {
 
     render () {
         return (
-            <div>
+            <div className="home-page">
                 <Search />
                 <div className="panel-content">
                     <Banner/>
