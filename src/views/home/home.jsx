@@ -96,7 +96,6 @@ class Like extends Component {
         if(data.length) {
             for(let i = 0; i < data.length; i++) {
                 let item = data[i];
-                console.log(item);
                 list.push(
                     <li className="like-item" key={i}>
                         <div className="pic">
@@ -125,7 +124,6 @@ class Like extends Component {
     }
 
     handleRefresh(resolve, reject) {
-        console.log(11);
         if (this.load) {
             resolve();
         } else {

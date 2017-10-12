@@ -54,6 +54,7 @@
     "postcss-px2rem": "^0.3.0",
     "postcss-simple-vars": "^4.1.0",
     "react-pull-to-refresh": "^1.1.1",
+    "redux-devtools": "^3.4.0",
     "sass-loader": "^6.0.6",
     "source-map-loader": "^0.2.2",
     "style-loader": "^0.18.2",
@@ -63,6 +64,7 @@
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",

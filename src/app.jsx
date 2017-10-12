@@ -14,6 +14,7 @@ import Router,{
     Link,
 } from "react-router-dom";
 import Routes from "@/router/router.jsx";
+import Store from "@/store/index.js";
 
 render(
     Routes,
